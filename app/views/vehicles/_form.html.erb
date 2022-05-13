@@ -1,0 +1,24 @@
+<%= form_with(model: @book, data: {turbo: false}) do |f| %>
+  <fieldset class="mb-2">
+    <%= f.label :vehicle %>
+    <%= f.text_field :vehicle %>
+  </fieldset>
+  <fieldset class="mb-2">
+    <%= f.label :vehicle_id %>
+    <%
+        # collection_select takes 4 params:
+        #   1. The attribute name in this model (book) to store the selected id in
+        #   2. The collection from which to build the options
+        #   3. The attribute in the collection items to use as the value of the option
+        #   4. The attribute in the collection items to use as the caption of the option
+    %>
+    <%= f.collection_select :vehicle_id, @vehicles, :id,  %>
+  </fieldset>
+  <fieldset class="mb-2">
+    <%= f.label :cover %>
+    <%= f.file_field :cover %>
+  </fieldset>
+  <fieldset>
+    <%= f.submit class: 'btn btn-primary' %>    
+  </fieldset>
+<% end %>

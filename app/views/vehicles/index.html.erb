@@ -1,10 +1,11 @@
-<h1>Vehicles</h1>
+<h1>
+    Vehicles
+    <%=  link_to('New Vehicle', new_vehicle_path, class: "btn btn-primary") %>
+</h1>
 
-<% @vehicle.each do |vehicle|%>
-<ul>
-<li></li>
-
-</ul>
-
+<% @vehicles.each do |vehicle| %>
+    <p> <%= link_to vehicle.make, vehicle %> with <%= vehicle.size %>.</p>
 <% end %>
+
+
 

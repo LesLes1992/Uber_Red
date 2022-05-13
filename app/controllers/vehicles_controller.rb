@@ -1,6 +1,6 @@
 class VehiclesController < ApplicationController
 
-  before_action :check_auth
+  # before_action :check_auth
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy, :booking, :cancel_booking]
 
   def index
@@ -41,9 +41,9 @@ class VehiclesController < ApplicationController
   end
 
   private
-  def check_auth
-    authorize Vehicle
-  end
+  # def check_auth
+  #   authorize Vehicle
+  # end
 
   def set_vehicle
     @vehicle = Vehicle.find(params[:id])
