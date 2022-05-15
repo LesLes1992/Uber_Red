@@ -1,7 +1,7 @@
 class VehiclesController < ApplicationController
 
   before_action :authenticate_user!#, except: [:index, :show] #you need to signin before doing anything 
-  before_action :check_auth
+  before_action :check_user
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy, :booking, :cancel_booking]
 
   def index
@@ -26,13 +26,11 @@ class VehiclesController < ApplicationController
     redirect_to @vehicle
   end
 
-  
-
   def edit
   end
 
   def update
-    @vehicle = Vehicle.update!(vehicle_params)
+    @vehicle.update!(vehicle_params)
     redirect_to @vehicle
   end
 
@@ -42,7 +40,7 @@ class VehiclesController < ApplicationController
   end
 
   private
-  def check_auth
+  def check_user
     authorize Vehicle
   end
 
@@ -51,6 +49,6 @@ class VehiclesController < ApplicationController
   end
 
   def vehicle_params 
-    return params.require(:vehicle).permit().merge(user: current_user)
+    return params.require(:vehicle).permit(:plate_number, :make, :size, :location, :wheelchair_hoist, :status).merge(user: current_user)
   end
 end

@@ -1,0 +1,28 @@
+<h1>Make a booking</h1>
+
+<%= form_with( url: new_vehicle_order_path, data: {turbo: false}) do |form| %>
+
+  <div>
+    <%= form.label :pick_up_address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.submit :book%>
+  </div>
+
+<% end %>
+
+<% for attribute in @order.attributes.keys %>
+    <p><%= attribute.humanize %> <%= @order.attributes[attribute].to_s %></p>
+  <% end %>
+
+
+
+
+
+
+
+
+
+

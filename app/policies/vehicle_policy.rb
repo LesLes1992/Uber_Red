@@ -19,7 +19,8 @@ class VehiclePolicy
   end
 
   def create?
-    return @user && @user.has_role?(:driver)
+    true
+    #return @user && @user.has_role?(:driver)
   end
 
   def new?

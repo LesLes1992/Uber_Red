@@ -7,6 +7,7 @@
 
 <% @vehicles.each do |vehicle| %>
     <p> <%= link_to vehicle.make, vehicle %> with <%= vehicle.size %>.</p>
+    <%=  link_to('Make a booking', new_vehicle_order_path(vehicle), class: "btn btn-primary") %>
 <% end %>
 
 
