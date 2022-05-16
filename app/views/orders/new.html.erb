@@ -1,21 +1,22 @@
 <h1>Make a booking</h1>
 
-<%= form_with( url: new_vehicle_order_path, data: {turbo: false}) do |form| %>
-
+<%= form_with(model: @order , data: {turbo_confirm: "Make a booking? #{current_user.email}" } ) do |form| %>
   <div>
     <%= form.label :pick_up_address %>
     <%= form.text_field :address %>
   </div>
-
   <div>
-    <%= form.submit :book%>
+  <%= form.hidden_field :user_id, value: "#{current_user.id}" %>
   </div>
-
+  <div>
+  <%= form.hidden_field :vehicle_id, value: "#{@vehicle.id}" %>
+  </div>
+  <div>
+    <%= form.submit 'Make a booking'%>
+  </div>
 <% end %>
 
-<% for attribute in @order.attributes.keys %>
-    <p><%= attribute.humanize %> <%= @order.attributes[attribute].to_s %></p>
-  <% end %>
+
 
 
 

@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
   root 'vehicles#index'
   resources :vehicles
+  resources :orders
 
-  get 'vehicles/:id/orders/new', to: 'orders#new', as: 'new_vehicle_order'
-  post 'vehicles/:id/orders/new', to: 'orders#create', as: 'vehicle_orders_path'
+  resources :vehicles do
+    resources :orders
+  end
 
-  devise_for :users
+  # get 'vehicles/:id/orders/new', to: 'orders#new', as: 'new_vehicle_order'
+  # post 'vehicles/:id/orders/new', to: 'orders#create', as: 'vehicle_orders_path'
+
+  devise_for :users, controllers: { registrations: "users/registrations" }
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

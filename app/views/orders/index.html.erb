@@ -1,2 +1,8 @@
-<h1>Orders#index</h1>
-<p>Find me in app/views/orders/index.html.erb</p>
+<h1>Your Order List</h1>
+
+<% @orders.each do |order| %>
+    <p> <%=order.id %>. Pick up at <%= link_to order.address, order%>.</p>
+    <div class = "btn-toolbar mt-2" >
+    <%= button_to('Cancel the booking', order, class: 'btn btn-danger', method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete the order?" } } )  %>
+</div>
+<% end %>

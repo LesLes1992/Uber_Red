@@ -1,37 +1,44 @@
 class OrdersController < ApplicationController
+
   before_action :authenticate_user!
+  before_action :set_order, only: [:show, :update, :destroy]
+  before_action :set_vehicle, only: [:new]
+
+  def index
+    @orders = Order.all
+  end
 
   def new
     @order = Order.new
   end
 
-  def create
+  def create 
     @order = Order.create!(order_params)
-    #redirect_to @vehicle
+    redirect_to orders_path
   end
 
-  def edit
-  end
+  def show
 
-  def update
   end
 
   def destroy
+    @order.destroy
+    redirect_to orders_path
   end
 
   private
-  def check_user
-    authorize Vehicle
+
+  def set_vehicle
+    @vehicle = Vehicle.find(params[:vehicle_id])
   end
 
   def set_order
-    @order = Order.find()
+    @order = Order.find(params[:id])
   end
 
-  def order_params 
-    return params.require(:order).permit(:address).merge(user: current_user, vehicle: vehicle)
+  def order_params
+    return params.require(:order).permit(:address, :user_id, :vehicle_id)
   end
-
 end
 
 

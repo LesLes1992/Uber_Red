@@ -2,7 +2,7 @@ class VehiclesController < ApplicationController
 
   before_action :authenticate_user!#, except: [:index, :show] #you need to signin before doing anything 
   before_action :check_user
-  before_action :set_vehicle, only: [:show, :edit, :update, :destroy, :booking, :cancel_booking]
+  before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
 
   def index
     @vehicles = Vehicle.all
@@ -16,9 +16,6 @@ class VehiclesController < ApplicationController
   end
 
   def booking
-  end
-
-  def cancel_booking
   end
 
   def create
@@ -35,8 +32,13 @@ class VehiclesController < ApplicationController
   end
 
   def destroy
-    @vehicle.destroy
-    redirect_to vehicles_path
+    begin 
+      @vehicle.destroy
+      redirect_to vehicles_path
+    rescue
+      flash[:alert] = "You have an order to finish. You can delete the vehicle after you finish the order"
+      redirect_to @vehicle
+    end
   end
 
   private

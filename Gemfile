@@ -79,3 +79,5 @@ gem "devise", "~> 4.8"
 gem "rolify", "~> 6.0"
 
 gem "pundit", "~> 2.2"
+
+gem "gmaps-autocomplete-rails", "~> 0.3.1"
