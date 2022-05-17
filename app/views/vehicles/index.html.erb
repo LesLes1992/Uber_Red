@@ -1,6 +1,6 @@
 <h1>
     Vehicles
-    <% if user_signed_in?%>
+    <% if (user_signed_in?) && (current_user.has_role? :driver) %>
     <%=  link_to('New Vehicle', new_vehicle_path, class: "btn btn-primary") %>
     <% end %>
 </h1>

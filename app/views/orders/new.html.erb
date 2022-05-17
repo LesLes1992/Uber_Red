@@ -1,10 +1,10 @@
 <h1>Make a booking</h1>
 
 <%= form_with(model: @order , data: {turbo_confirm: "Make a booking? #{current_user.email}" } ) do |form| %>
-  <div>
-    <%= form.label :pick_up_address %>
-    <%= form.text_field :address %>
-  </div>
+  <div id="locationField">
+    <input id="autocomplete" placeholder="Enter your address"
+             onFocus="geolocate()" type="text"></input>
+    </div>
   <div>
   <%= form.hidden_field :user_id, value: "#{current_user.id}" %>
   </div>
@@ -15,6 +15,8 @@
     <%= form.submit 'Make a booking'%>
   </div>
 <% end %>
+
+
 
 
 

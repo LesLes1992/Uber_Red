@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   root 'vehicles#index'
   resources :vehicles
   resources :orders
@@ -7,10 +8,9 @@ Rails.application.routes.draw do
     resources :orders
   end
 
-  # get 'vehicles/:id/orders/new', to: 'orders#new', as: 'new_vehicle_order'
-  # post 'vehicles/:id/orders/new', to: 'orders#create', as: 'vehicle_orders_path'
+  post 'users/role', to: 'roles#role', as: 'user_role'
 
-  devise_for :users, controllers: { registrations: "users/registrations" }
+  devise_for :users#, controllers: { registrations: "users/registrations" }
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
