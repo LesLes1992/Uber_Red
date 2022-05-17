@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
-class VehiclePolicy
+class OrderPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
     @user = user
     @record = record
-
   end
 
   def index?
@@ -18,23 +17,15 @@ class VehiclePolicy
   end
 
   def create?
-    return @user && @user.has_role?(:driver)
+    return @user && @user.has_role?(:traveler)
   end
 
   def new?
     create?
   end
 
-  def update?
-    create?
-  end
-
-  def edit?
-    create?
-  end
-
   def destroy?
-    create?
+    return @user && @user.has_any_role?(:driver, :traveler)
   end
 
 

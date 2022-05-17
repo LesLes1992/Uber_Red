@@ -7,6 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :vehicles #watch matt model videos
+  has_many :orders
 
   def assign_default_role
     self.add_role(:traveler) if self.roles.blank?

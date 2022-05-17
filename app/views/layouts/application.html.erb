@@ -86,9 +86,12 @@
             <li class="nav-item">
               <%= link_to 'Home', root_path, class: 'nav-link' %>
             </li>
-            <li class="nav-item">
-              <%= link_to 'Vehicles', vehicles_path, class: 'nav-link' %>
-            </li>
+            <% if (user_signed_in?) && (current_user.has_role? :traveler)%>
+              <li class="nav-item">
+                <%= link_to 'Order list', orders_path, class: 'nav-link' %>
+              </li>
+            <% end %>
+
             <% if (user_signed_in?) && (current_user.has_role? :traveler)%>
               <li class="nav-item">
                   <%= button_to "To be a driver", user_role_path, class: 'btn btn-outline-secondary', method: :post, params: {role: :driver },form: { data: { turbo_confirm: "Are you sure you want to change to be a driver ?" } }  %>
@@ -104,7 +107,7 @@
           </ul>
           <% if user_signed_in? %>
               <div class="ml-auto btn-toolbar p-3">
-                Welcome, <%= current_user.email%>, as a <%=current_user.roles.label %>
+                Welcome, <%= current_user.email%>
               </div>
               <div class="ml-auto btn-toolbar"> 
               <%= button_to 'Log Out', destroy_user_session_path, class: 'btn btn-outline-warning', method: :delete, form: { data: { turbo_confirm: "Are you sure you want to log out #{current_user.email} ?" } } %>

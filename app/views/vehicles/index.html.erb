@@ -3,6 +3,7 @@
     <% if (user_signed_in?) && (current_user.has_role? :driver) %>
     <%=  link_to('New Vehicle', new_vehicle_path, class: "btn btn-primary") %>
     <% end %>
+    
 </h1>
 
 <% @vehicles.each do |vehicle| %>

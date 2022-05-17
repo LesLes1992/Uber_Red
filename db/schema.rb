@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_14_090258) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_17_111628) do
   create_table "orders", force: :cascade do |t|
     t.string "address"
     t.integer "user_id", null: false
@@ -58,7 +58,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_14_090258) do
     t.string "size"
     t.string "location"
     t.string "wheelchair_hoist"
-    t.string "status"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

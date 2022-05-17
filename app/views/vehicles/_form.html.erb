@@ -26,18 +26,13 @@
     <%= form.select :wheelchair_hoist, ["Available", "Unavaliable"]%>
   </div>
 
-   <div>
-    <%= form.label :status %>
-    <%= form.select :status, ["Avaliable", "Unavaliable",]%>
-  </div>
-
   <div>
     <%= form.submit %>
   </div>
 <% end %>
 
 
-<% if false%>
+<% if false%>  #show all the attribute of vehicles table
   <% for attribute in @vehicle.attributes.keys %>
     <p><%= attribute.humanize %> <%= @vehicle.attributes[attribute].to_s %></p>
   <% end %>

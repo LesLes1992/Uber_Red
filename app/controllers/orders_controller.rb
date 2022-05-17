@@ -1,11 +1,12 @@
 class OrdersController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :check_user_auth
   before_action :set_order, only: [:show, :update, :destroy]
   before_action :set_vehicle, only: [:new]
 
   def index
-    @orders = Order.all
+    @orders = current_user.orders
   end
 
   def new
@@ -27,6 +28,10 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def check_user_auth
+    authorize Order
+  end
 
   def set_vehicle
     @vehicle = Vehicle.find(params[:vehicle_id])
