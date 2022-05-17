@@ -8,13 +8,16 @@
 
 <% @vehicles.each do |vehicle| %>
     <p> <%= link_to vehicle.make, vehicle %> with <%= vehicle.size %>.</p>
-    <div>
-        <% if vehicle.order == nil %>
+    <% if user_signed_in? %>
+        <div>
+            <% if (vehicle.order == nil ) && (current_user.has_role? :traveler) %>
             <%=  link_to('Make a booking', new_vehicle_order_path(vehicle), class: "btn btn-primary") %>
-        <% else %>
+            <% elsif (vehicle.order != nil ) && (current_user.has_role? :traveler)%>
             <%=  "This vehicle has been booked" %>
-        <% end %>
-    </div>
+            <% else%>
+            <% end %>
+        </div>
+    <% end %>
 <% end %>
 
 
