@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
   before_action :set_vehicle, only: [:new]
 
   def index
+    @vehicles = current_user.vehicles
     @orders = current_user.orders
   end
 
@@ -24,7 +25,7 @@ class OrdersController < ApplicationController
 
   def destroy
     @order.destroy
-    redirect_to orders_path
+    redirect_to root_path
   end
 
   private

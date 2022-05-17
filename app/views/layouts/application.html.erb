@@ -92,15 +92,21 @@
               </li>
             <% end %>
 
+            <% if (user_signed_in?) && (current_user.has_role? :driver)%>
+              <li class="nav-item">
+                <%= link_to 'Order Pending', orders_path, class: 'nav-link' %>
+              </li>
+            <% end %>
+
             <% if (user_signed_in?) && (current_user.has_role? :traveler)%>
               <li class="nav-item">
-                  <%= button_to "To be a driver", user_role_path, class: 'btn btn-outline-secondary', method: :post, params: {role: :driver },form: { data: { turbo_confirm: "Are you sure you want to change to be a driver ?" } }  %>
+                  <%= button_to "To be a driver", user_role_path, class: 'btn btn-outline-secondary', method: :post, params: {role: :driver },form: { data: { turbo_confirm: "Are you sure you want to change to be a <b>driver</b> ?" } }  %>
               </li>
             <% end %>
 
             <% if (user_signed_in?) && (current_user.has_role? :driver)%>
               <li class="nav-item">
-                  <%= button_to "To be a traveler", user_role_path, class: 'btn btn-outline-secondary', method: :post, params: {role: :traveler},form: { data: { turbo_confirm: "Are you sure you want to change to be a trave?" } }  %>
+                  <%= button_to "To be a traveler", user_role_path, class: 'btn btn-outline-secondary', method: :post, params: {role: :traveler},form: { data: { turbo_confirm: "Are you sure you want to change to be a <b>traveler</b>?" } }  %>
               </li>
             <% end %>
             
