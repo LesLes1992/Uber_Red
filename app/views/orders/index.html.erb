@@ -8,26 +8,28 @@
 
 <% if current_user.has_role? :driver %>
     <% @vehicles.each do |vehicle|%>
-        <% if vehicle.order == nil %>
+        <% if vehicle.order == nil%>
             <%= "You don't have any pending orders."%>
-        <% elsif vehicle.order != nil%>
+        <% elsif %>
             <p> Address -- <%= vehicle.order.address%> </p>
             <p> Traveler -- <%= vehicle.order.user.email %>.</p>
             <div class = "btn-toolbar mt-2" >
                 <%= button_to('Cancel the booking', vehicle.order, class: 'btn btn-danger', method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete the order?" } } )  %>
             </div>
+        <% else %>
         <% end %>
     <% end %>
 <% elsif current_user.has_role? :traveler  %>
     <% if @order == [] %>
         <h3><%= "You don't have any orders"%></h3>
     <% elsif @order != [] %>
+        <% i = 0%>
         <% @orders.each do |order| %>
             <p> Address: <%= order.address%> with <%= order.vehicle.make %></p>
             <div class = "btn-toolbar mt-2" >
                 <%= button_to('Cancel the booking', order, class: 'btn btn-danger', method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete the order?" } } )  %>
             </div>
+        <% end %>
+    <% else %>
     <% end %>
 <% end %>
-<% end %>
-

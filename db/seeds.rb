@@ -12,12 +12,12 @@ sn = User.create(email: "driver@gmail.com", password: "123456")
 gxf = User.create(email: "traveler@gmail.com", password: "123456")
 
 
-sn.vehicles.create(plate_number: "111111", make: "KIA", size: "7 Seats", location: "QLD", wheelchair_hoist: "Avaliable")
-sn.vehicles.create(plate_number: "222222", make: "Honda", size: "5 Seats", location: "VIC", wheelchair_hoist: "Avaliable")
-sn.vehicles.create(plate_number: "333333", make: "Benz", size: "7 Seats", location: "NSW", wheelchair_hoist: "Avaliable")
-gxf.vehicles.create(plate_number: "444444", make: "Volvo", size: "7 Seats", location: "QLD", wheelchair_hoist: "Avaliable")
-gxf.vehicles.create(plate_number: "555555", make: "Mitsubishi", size: "7 Seats", location: "NT", wheelchair_hoist: "Avaliable")
-gxf.vehicles.create(plate_number: "666666", make: "Mazda", size: "7 Seats", location: "QLD", wheelchair_hoist: "Avaliable")
+# sn.vehicles.create(plate_number: "111111", make: "KIA", size: "7 Seats", location: "QLD", wheelchair_hoist: "Avaliable")
+# sn.vehicles.create(plate_number: "222222", make: "Honda", size: "5 Seats", location: "VIC", wheelchair_hoist: "Avaliable")
+# sn.vehicles.create(plate_number: "333333", make: "Benz", size: "7 Seats", location: "NSW", wheelchair_hoist: "Avaliable")
+# gxf.vehicles.create(plate_number: "444444", make: "Volvo", size: "7 Seats", location: "QLD", wheelchair_hoist: "Avaliable")
+# gxf.vehicles.create(plate_number: "555555", make: "Mitsubishi", size: "7 Seats", location: "NT", wheelchair_hoist: "Avaliable")
+# gxf.vehicles.create(plate_number: "666666", make: "Mazda", size: "7 Seats", location: "QLD", wheelchair_hoist: "Avaliable")
 
 puts "Vehicles: #{Vehicle.count}"
 puts "User: #{User.count}"

@@ -2,8 +2,8 @@
 
 <%= form_with(model: @order , data: {turbo_confirm: "Make a booking?
 #{current_user.email}" } ) do |form| %>
-<div mb-3><%= form.label :pick_up_address %> <%= form.text_field :address %></div>
-<div><%= form.hidden_field :user_id, value: "#{current_user.id}" %></div>
-<div><%= form.hidden_field :vehicle_id, value: "#{@vehicle.id}" %></div>
-<div mb-3 ><%= form.submit 'Make a booking'%></div>
+<div class="mb-3"><%= form.label :pick_up_address %> <%= form.text_field :address %></div>
+<div class="mb-3"><%= form.hidden_field :user_id, value: "#{current_user.id}" %></div>
+<div class="mb-3"><%= form.hidden_field :vehicle_id, value: "#{@vehicle.id}" %></div>
+<div class="mb-3" ><%= form.submit 'Make a booking'%></div>
 <% end %>

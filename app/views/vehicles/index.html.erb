@@ -3,7 +3,7 @@
   %> <%= link_to('Create a New Vehicle', new_vehicle_path, class: "btn
   btn-outline-secondary") %> <% end %>
 </h1>
-<div class="row g-0 m-4 justify-content-between">
+<div class="row g-0 m-4 justify-content-around">
   <% @vehicles.each do |vehicle| %>
     <div class="card m-4 align-content-between" style="width: 18rem">
       <div class="card-header">Vehicles</div>
@@ -26,8 +26,8 @@
         <% if user_signed_in? && (current_user.has_role? :traveler) %>
           <div>
             <% if (vehicle.order == nil ) %> <%= link_to('Make a booking',
-        new_vehicle_order_path(vehicle), class: "btn btn-secondary ") %> <% else
-        %>
+        new_vehicle_order_path(vehicle), class: "btn btn-secondary ") %> 
+        <% else%>
             <h6 class="text-danger"><%= "Booked" %></h6>
           <% end %>
         </div>

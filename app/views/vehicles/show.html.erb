@@ -3,7 +3,7 @@
     <h2 class="card-header text-center">Vehicle Information</h2>
     <div class="text-center">
       <% if @vehicle.vehicle_image.attached? %>
-        <%= cl_image_tag @vehicle.vehicle_image.key, cloud_name: "dapawns9w", :quality => "auto:best", width: 700, crop: "scale" %> <% end %>
+        <%= cl_image_tag @vehicle.vehicle_image.key, cloud_name: ENV['CLOUDINARY_CLOUD_NAME'], :quality => "auto:best", width: 700, crop: "scale" %> <% end %>
     </div>
     <div class="card-body mt-3">
       <h5 class="card-title text-decoration-none">
@@ -38,9 +38,10 @@
       <% end %>
     </div>
       <div class="card-body justify-content-end btn-toolbar mt-2">
-        <% if (user_signed_in?) && (current_user.has_role? :driver) %> 
-        <%= link_to("Edit", edit_vehicle_path(@vehicle), class: "btn btn-warning me-2") %> 
-        <%= button_to("Delete", @vehicle, class: "btn btn-danger",data: { turbo_confirm: "Are you sure you want to delete '#{@vehicle.make}' ?" } ) %> <% end %>
+        <% if (user_signed_in?) && (current_user.has_role? :driver) %>
+        <%= link_to("Edit", edit_vehicle_path(@vehicle), class: "btn btn-warning me-2") if policy(@vehicle).edit? %>
+        <%= button_to('Delete', @vehicle, class: 'btn btn-danger', method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete '#{@vehicle.make}' ?" } }) if policy(@vehicle).destroy? %>
+        <% end %>
       </div>
     </div>
   </div>
