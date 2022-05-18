@@ -1,23 +1,46 @@
-<h1> <%= @vehicle.make %> </h1>
-<h3>Size: <%= @vehicle.size %></h3>
-<div>
-    <% if @vehicle.vehicle_image.attached? %>
-        <%= cl_image_tag @vehicle.vehicle_image.key, cloud_name: "dapawns9w",:quality=>"auto:best", width: 200, crop: "scale" %>
-    <% end %> 
-</div>
-<div>
-    <%if user_signed_in? %>
-        <% if (@vehicle.order == nil ) && (current_user.has_role? :traveler) %>
-            <%=  link_to('Make a booking', new_vehicle_order_path(@vehicle), class: "btn btn-primary") %>
-        <% elsif (@vehicle.order != nil ) && (current_user.has_role? :traveler) %>
-            <%= "This vehicle has been booked." %>
-        <% else %>
-        <% end %> 
-    <% end %>
-</div>
-<% if (user_signed_in?) && (current_user.has_role? :driver) %> 
-<div class = "btn-toolbar mt-2" >
-    <%= link_to('Edit', edit_vehicle_path(@vehicle), class: 'btn btn-warning me-2') %>
-    <%= button_to('Delete', @vehicle, class: 'btn btn-danger', method: :delete, form: { data: { turbo_confirm: "Are you sure you want to delete '#{@vehicle.make}' ?" } } )  %>
-</div>
-<% end %>
+<div class="d-flex justify-content-center">
+  <div class="card" style="width: 50rem">
+    <h2 class="card-header text-center">Vehicle Information</h2>
+    <div class="text-center">
+      <% if @vehicle.vehicle_image.attached? %>
+        <%= cl_image_tag @vehicle.vehicle_image.key, cloud_name: "dapawns9w", :quality => "auto:best", width: 700, crop: "scale" %> <% end %>
+    </div>
+    <div class="card-body mt-3">
+      <h5 class="card-title text-decoration-none">
+        Plate Number: <%= @vehicle.plate_number %>
+      </h5>
+      <h5 class="card-title text-decoration-none">
+        Brand: <%= @vehicle.make %>
+      </h5>
+      <h5 class="card-title">Size: <%= @vehicle.size %></h5>
+      <h5 class="card-title">
+        Wheelchair Hoist: <%= @vehicle.wheelchair_hoist %>
+      </h5>
+      <h5 class="card-title">Location: <%= @vehicle.location %></h5>
+    </div>
+    <div class="card-body text-end">
+      <% if user_signed_in? && (current_user.has_role? :traveler) %>
+        <div>
+          <% if (@vehicle.order == nil) %> 
+            <%= link_to("Make a booking", new_vehicle_order_path(@vehicle), class: "btn btn-secondary ") %> 
+          <% else %>
+            <h6 class="text-danger"><%= "Booked" %></h6>
+          <% end %>
+        </div>
+      <% elsif user_signed_in? == false %>
+        <div>
+          <% if (@vehicle.order == nil) %> 
+            <%= link_to("Make a booking", new_vehicle_order_path(@vehicle), class: "btn btn-secondary") %>
+          <% else %>
+            <h6 class="text-danger"><%= "Booked" %></h6>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+      <div class="card-body justify-content-end btn-toolbar mt-2">
+        <% if (user_signed_in?) && (current_user.has_role? :driver) %> 
+        <%= link_to("Edit", edit_vehicle_path(@vehicle), class: "btn btn-warning me-2") %> 
+        <%= button_to("Delete", @vehicle, class: "btn btn-danger",data: { turbo_confirm: "Are you sure you want to delete '#{@vehicle.make}' ?" } ) %> <% end %>
+      </div>
+    </div>
+  </div>

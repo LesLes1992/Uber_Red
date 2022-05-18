@@ -1,45 +1,29 @@
 <%= form_with(model: @vehicle, data: {turbo: false}) do |form| %>
-
-  <div>
-    <%= form.label :plate_number %>
-    <%= form.text_field :plate_number %>
+<form>
+  <div class="mb-3">
+    <%= form.label :plate_number %> <%= form.text_field :plate_number %>
   </div>
-
-  <div>
-    <%= form.label :brand%>
-    <%= form.text_field :make, placeholder: "Toyota" %>
+  <div class="mb-3">
+    <%= form.label :brand%> <%= form.text_field :make, placeholder: "Toyota" %>
   </div>
-
-  <div>
-    <%= form.label :size %>
-    <%= form.select :size, ["5 Seats", "7 Seats", "9 Seats", "9 Seats and more"]%>
+  <div class="mb-3">
+    <%= form.label :size %> <%= form.select :size, ["5 Seats", "7 Seats", "9
+    Seats", "9 Seats and more"]%>
   </div>
-
-  <div>
-  <%= form.label :location%>
-    <%= form.select :location, ["NSW", "QLD", "SA", "TAS", "VIC", "WA", "ACT", "NT"]  %>
+  <div class="mb-3">
+    <%= form.label :location%> <%= form.select :location, ["NSW", "QLD", "SA",
+    "TAS", "VIC", "WA", "ACT", "NT"] %>
   </div>
-
-
-  <div>
-    <%= form.label :wheelchair_hoist %>
-    <%= form.select :wheelchair_hoist, ["Available", "Unavaliable"]%>
+  <div class="mb-3">
+    <%= form.label :wheelchair_hoist %> <%= form.select :wheelchair_hoist,
+    ["Available", "Unavailable"]%>
   </div>
-
-  <div>
-    <%= form.label :vehicle_image %>
-    <%= form.file_field :vehicle_image %>
+  <div class="mb-3">
+    <%= form.label :vehicle_image %> <%= form.file_field :vehicle_image %>
   </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
-
-
-<% if false%>  #show all the attribute of vehicles table
-  <% for attribute in @vehicle.attributes.keys %>
-    <p><%= attribute.humanize %> <%= @vehicle.attributes[attribute].to_s %></p>
-  <% end %>
-<% end %>
-
+  <div class="mb-3"><%= form.submit %></div>
+</form>
+<% end %> <% if false%> #show all the attribute of vehicles table <% for
+attribute in @vehicle.attributes.keys %>
+<p><%= attribute.humanize %> <%= @vehicle.attributes[attribute].to_s %></p>
+<% end %> <% end %>

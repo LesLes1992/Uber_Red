@@ -6,17 +6,18 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 User.destroy_all
+Vehicle.destroy_all
 
-sn = User.create(email: "snowberg.prc@gmail.com", password: "123456")
-gxf = User.create(email: "guxuefeng1992@139.com", password: "123456")
+sn = User.create(email: "driver@gmail.com", password: "123456")
+gxf = User.create(email: "traveler@gmail.com", password: "123456")
 
 
-sn.vehicles.create(plate_number: "111111", make: "111KIA", size: "7 Seats", location: "Queensland", wheelchair_hoist: "avaliable")
-sn.vehicles.create(plate_number: "222222", make: "222Honda", size: "5 Seats", location: "Queensland", wheelchair_hoist: "avaliable")
-sn.vehicles.create(plate_number: "333333", make: "333Benz", size: "7 Seats", location: "Queensland", wheelchair_hoist: "avaliable")
-gxf.vehicles.create(plate_number: "444444", make: "444Volve", size: "7 Seats", location: "Queensland", wheelchair_hoist: "avaliable")
-gxf.vehicles.create(plate_number: "555555", make: "555Mitsubishi", size: "7 Seats", location: "Queensland", wheelchair_hoist: "avaliable")
-gxf.vehicles.create(plate_number: "666666", make: "666Mazda", size: "7 Seats", location: "Queensland", wheelchair_hoist: "avaliable")
+sn.vehicles.create(plate_number: "111111", make: "KIA", size: "7 Seats", location: "QLD", wheelchair_hoist: "Avaliable")
+sn.vehicles.create(plate_number: "222222", make: "Honda", size: "5 Seats", location: "VIC", wheelchair_hoist: "Avaliable")
+sn.vehicles.create(plate_number: "333333", make: "Benz", size: "7 Seats", location: "NSW", wheelchair_hoist: "Avaliable")
+gxf.vehicles.create(plate_number: "444444", make: "Volvo", size: "7 Seats", location: "QLD", wheelchair_hoist: "Avaliable")
+gxf.vehicles.create(plate_number: "555555", make: "Mitsubishi", size: "7 Seats", location: "NT", wheelchair_hoist: "Avaliable")
+gxf.vehicles.create(plate_number: "666666", make: "Mazda", size: "7 Seats", location: "QLD", wheelchair_hoist: "Avaliable")
 
 puts "Vehicles: #{Vehicle.count}"
 puts "User: #{User.count}"
