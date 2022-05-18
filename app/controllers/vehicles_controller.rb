@@ -51,6 +51,6 @@ class VehiclesController < ApplicationController
   end
 
   def vehicle_params 
-    return params.require(:vehicle).permit(:plate_number, :make, :size, :location, :wheelchair_hoist, :status).merge(user: current_user)
+    return params.require(:vehicle).permit(:plate_number, :make, :size, :location, :wheelchair_hoist, :status, :vehicle_image).merge(user: current_user)
   end
 end
