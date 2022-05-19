@@ -41,22 +41,34 @@ class VehiclesController < ApplicationController
   end
 
   def update
-    begin
-      @vehicle.update!(vehicle_params)
-      redirect_to @vehicle
-    rescue
-      flash[:alert] = @vehicle.errors.full_messages.join('<br>').html_safe
-      render 'edit'
+    if @vehicle.user == current_user
+      begin
+        @vehicle.update!(vehicle_params)
+        flash[:alert] = "You have updated this car."
+        redirect_to @vehicle
+      rescue
+        flash[:alert] = @vehicle.errors.full_messages.join('<br>').html_safe
+        render 'edit'
+      end
+    else
+      flash[:alert] = "You are not authorizated to update this vehicle."
+      redirect_to root_path
     end
   end
 
   def destroy
-    begin
-      @vehicle.destroy
+    if @vehicle.user == current_user
+      begin
+        @vehicle.destroy
+        flash[:alert] = "You have deleted the car."
+        redirect_to root_path
+      rescue
+        flash[:alert] = "You have an order to finish. You can delete the vehicle after you finish the order"
+        redirect_to @vehicle
+      end
+    else
+      flash[:alert] = "You are not authorizated to delete this vehicle."
       redirect_to root_path
-    rescue
-      flash[:alert] = "You have an order to finish. You can delete the vehicle after you finish the order"
-      redirect_to @vehicle
     end
   end
 
@@ -65,8 +77,9 @@ class VehiclesController < ApplicationController
     authorize Vehicle
   end
 
+
   def set_vehicle
-    @vehicle = Vehicle.find(params[:id])
+      @vehicle = Vehicle.find(params[:id])
   end
 
   def vehicle_params 

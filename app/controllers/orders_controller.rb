@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
 
   before_action :authenticate_user!
   before_action :check_user_auth
-  before_action :set_order, only: [:show, :update, :destroy]
+  before_action :set_order, only: [:destroy]
   before_action :set_vehicle, only: [:new]
 
   def index
@@ -11,7 +11,12 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new
+    if @vehicle.user != current_user
+      @order = Order.new
+    else
+      flash[:alert] = " You can't book yourself car."
+      redirect_to root_path
+    end
   end
 
   def create 
