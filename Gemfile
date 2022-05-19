@@ -22,7 +22,7 @@ gem "jsbundling-rails"
 gem "turbo-rails"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
+
 
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "cssbundling-rails"
@@ -83,9 +83,14 @@ gem "pundit", "~> 2.2"
 
 gem "gmaps-autocomplete-rails", "~> 0.3.1"
 
-gem "cloudinary", "~> 1.23"
-gem "activestorage-cloudinary-service", "~> 0.2.3"
 
-gem "dotenv-rails", "~> 2.7"
+gem 'activestorage-cloudinary-service', '~> 0.2.3'
+gem 'cloudinary', '~> 1.23'
 
-gem "pg", "~> 1.3", :group => :production
+gem 'ffi', '~> 1.15'
+
+gem 'dotenv-rails', '~> 2.7'
+
+gem 'pg', '~> 1.3', group: :production
+
+gem "stimulus-rails", "~> 1.0"
