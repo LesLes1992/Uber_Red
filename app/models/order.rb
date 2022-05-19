@@ -3,5 +3,4 @@ class Order < ApplicationRecord
   belongs_to :vehicle
 
 
-  validates :address, presence: true
 end
